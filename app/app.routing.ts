@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { HeroesComponent } from './heroes.component';
-import { DashboardComponent } from './dashboard.component';
-import { HeroDetailComponent } from './hero-detail.component';
+import { HeroesComponent } from './components/heroes.component';
+import { DashboardComponent } from './components/dashboard.component';
+import { HeroDetailComponent } from './components/hero-detail.component';
 
 const appRoutes: Routes = [{
         path: 'detail/:id',

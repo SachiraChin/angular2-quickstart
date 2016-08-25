@@ -10,31 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var hero_service_1 = require('./hero.service');
-var DashboardComponent = (function () {
-    function DashboardComponent(router, heroService) {
+var hero_service_1 = require('../services/hero.service');
+var HeroesComponent = (function () {
+    function HeroesComponent(router, heroService) {
         this.router = router;
         this.heroService = heroService;
-        this.heroes = [];
     }
-    DashboardComponent.prototype.ngOnInit = function () {
+    HeroesComponent.prototype.ngOnInit = function () {
+        this.getHeroes();
+    };
+    HeroesComponent.prototype.getHeroes = function () {
         var _this = this;
-        this.heroService.getHeroes()
-            .then(function (heroes) { return _this.heroes = heroes.slice(1, 5); });
+        this.heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
     };
-    DashboardComponent.prototype.gotoDetail = function (hero) {
-        var link = ['/detail', hero.id];
-        this.router.navigate(link);
+    HeroesComponent.prototype.onSelect = function (hero) {
+        this.selectedHero = hero;
     };
-    DashboardComponent = __decorate([
+    HeroesComponent.prototype.gotoDetail = function () {
+        this.router.navigate(['/detail', this.selectedHero.id]);
+    };
+    HeroesComponent = __decorate([
         core_1.Component({
-            selector: 'my-dashboard',
-            templateUrl: 'app/dashboard.component.html',
-            styleUrls: ['app/dashboard.component.css']
+            selector: 'my-heroes',
+            templateUrl: 'app/templates/heroes.component.html',
+            styleUrls: ['app/css/heroes.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router, hero_service_1.HeroService])
-    ], DashboardComponent);
-    return DashboardComponent;
+    ], HeroesComponent);
+    return HeroesComponent;
 }());
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+exports.HeroesComponent = HeroesComponent;
+//# sourceMappingURL=heroes.component.js.map
